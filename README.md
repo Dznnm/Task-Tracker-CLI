@@ -3,7 +3,7 @@
 A simple command-line task tracker built with Python and JSON storage.
 
 Project URL:
-https://github.com/Dznnm/Task-Tracker-CLI
+https://roadmap.sh/projects/task-tracker
 
 ## Features
 
