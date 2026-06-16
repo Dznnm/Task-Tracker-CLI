@@ -1,7 +1,22 @@
 [
     {
-        "id": 0,
-        "description": "adding add command",
-        "status": "todo"
+        "id": 2,
+        "description": "2nd command",
+        "status": "To do"
+    },
+    {
+        "id": 3,
+        "description": "learn python",
+        "status": "In Progress"
+    },
+    {
+        "id": 4,
+        "description": "delete command?",
+        "status": "Done"
+    },
+    {
+        "id": 5,
+        "description": "buy milk",
+        "status": "To Do"
     }
 ]
