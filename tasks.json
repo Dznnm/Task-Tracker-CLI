@@ -1,22 +1,23 @@
 [
     {
-        "id": 2,
-        "description": "2nd command",
-        "status": "To do"
+        "id": 7,
+        "description": "am i done here?",
+        "status": "To Do",
+        "created at": "2026-06-16 18:12:56",
+        "updated at": "2026-06-16 18:12:56"
     },
     {
-        "id": 3,
-        "description": "learn python",
-        "status": "In Progress"
+        "id": 8,
+        "description": "built my task tracker CLI",
+        "status": "Done",
+        "created at": "2026-06-16 18:14:01",
+        "updated at": "2026-06-16 18:14:26"
     },
     {
-        "id": 4,
-        "description": "delete command?",
-        "status": "Done"
-    },
-    {
-        "id": 5,
+        "id": 9,
         "description": "buy milk",
-        "status": "To Do"
+        "status": "In Progress",
+        "created at": "2026-06-16 18:14:12",
+        "updated at": "2026-06-16 18:14:42"
     }
 ]
