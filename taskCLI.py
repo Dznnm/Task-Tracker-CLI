@@ -18,8 +18,21 @@ if sys.argv[1] == "add":
 if sys.argv[1] == "list":
     with open("tasks.json", "r") as file:
         tasks = json.load(file)
-    for task in tasks:
-        print(f"{task['id']}: {task['description']} - {task['status']}")
+    if len(sys.argv) == 2:
+        for task in tasks:
+            print(f"{task['id']}: {task['description']} - {task['status']}")
+    if sys.argv[2] == "todo":
+        for task in tasks:
+            if task["status"] == "To Do":
+                print(f"{task['id']}: {task['description']} - {task['status']}")
+    if sys.argv[2] == "WIP":
+        for task in tasks:
+            if task["status"] == "In Progress":
+                print(f"{task['id']}: {task['description']} - {task['status']}")
+    if sys.argv[2] == "done":
+        for task in tasks:
+            if task["status"] == "Done":
+                print(f"{task['id']}: {task['description']} - {task['status']}")
 
 if sys.argv[1] == "update":
     with open("tasks.json", "r") as file:
