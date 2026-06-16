@@ -5,9 +5,20 @@ from datetime import datetime
 now = datetime.now()
 timestamp = now.strftime("%Y-%m-%d %H:%M:%S")
 
-if sys.argv[1] == "add":
+def load_tasks():
     with open("tasks.json", "r") as file:
-        tasks = json.load(file)
+        return json.load(file)
+    
+def save_tasks(tasks):
+    with open("tasks.json", "w") as file:
+        json.dump(tasks, file, indent=4)
+
+if len(sys.argv) < 2:
+    print("Please provide a command: add, list, update, delete, mark-done, mark-WIP")
+    sys.exit(1)
+    
+if sys.argv[1] == "add":
+    tasks = load_tasks()
     highest_id = max(task["id"] for task in tasks) if tasks else 0
     new_task = {
         "id": highest_id + 1,
@@ -18,12 +29,10 @@ if sys.argv[1] == "add":
     }
     tasks.append(new_task)
     print("Task added to memory!")
-    with open("tasks.json", "w") as file:
-        json.dump(tasks, file, indent=4)
+    save_tasks(tasks)
 
 if sys.argv[1] == "list":
-    with open("tasks.json", "r") as file:
-        tasks = json.load(file)
+    tasks = load_tasks()
     if len(sys.argv) == 2:
         for task in tasks:
             print(f"{task['id']}: {task['description']} - {task['status']}")
@@ -42,8 +51,7 @@ if sys.argv[1] == "list":
                     print(f"{task['id']}: {task['description']} - {task['status']}")
 
 if sys.argv[1] == "update":
-    with open("tasks.json", "r") as file:
-        tasks = json.load(file)
+    tasks = load_tasks()
     for task in tasks:
         if task["id"] == int(sys.argv[2]):
             task["status"] = sys.argv[3]
@@ -52,12 +60,10 @@ if sys.argv[1] == "update":
             break
     else:
             print("Task not found!")
-    with open("tasks.json", "w") as file:
-        json.dump(tasks, file, indent=4)
+    save_tasks(tasks)
 
 if sys.argv[1] == "delete":
-    with open("tasks.json", "r") as file:
-        tasks = json.load(file)
+    tasks = load_tasks()
     for task in tasks:
         if task["id"] == int(sys.argv[2]):
             tasks.remove(task)
@@ -65,12 +71,10 @@ if sys.argv[1] == "delete":
             break
     else:
         print("Task not found!")
-    with open("tasks.json", "w") as file:
-        json.dump(tasks, file, indent=4)
+    save_tasks(tasks)
 
 if sys.argv[1] == "mark-done":
-    with open("tasks.json", "r") as file:
-        tasks = json.load(file)
+    tasks = load_tasks()
     for task in tasks:
         if task["id"] == int(sys.argv[2]):
             task["status"] = "Done"
@@ -79,12 +83,10 @@ if sys.argv[1] == "mark-done":
             break
     else:
             print("Task not found!")
-    with open("tasks.json", "w") as file:
-        json.dump(tasks, file, indent=4)
+    save_tasks(tasks)
 
 if sys.argv[1] == "mark-WIP":
-    with open("tasks.json", "r") as file:
-        tasks = json.load(file)
+    tasks = load_tasks()
     for task in tasks:
         if task["id"] == int(sys.argv[2]):
             task["status"] = "In Progress"
@@ -93,5 +95,4 @@ if sys.argv[1] == "mark-WIP":
             break
     else:
             print("Task not found!")
-    with open("tasks.json", "w") as file:
-        json.dump(tasks, file, indent=4)
+    save_tasks(tasks)
